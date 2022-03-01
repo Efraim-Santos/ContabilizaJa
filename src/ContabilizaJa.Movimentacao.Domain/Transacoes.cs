@@ -15,6 +15,8 @@ namespace ContabilizaJa.Movimentacao.Domain
 
         public string Descricao { get; private set; }
 
+        public ExtratoBancario Extrato { get; private set; }
+
         public Transacoes(string tipo, DateTime data, decimal valor, string descricao)
         {
             Tipo = tipo;

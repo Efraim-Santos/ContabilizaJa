@@ -6,14 +6,14 @@ namespace ContabilizaJa.Movimentacao.Domain
 {
     public class ExtratoBancario : Entity
     {
-        public ICollection<Transacoes> Transaction { get; private set; }
+        public ICollection<Transacoes> Transacoes { get; private set; }
         public DateTime DataInicio { get; private set; }
         public DateTime DataFim { get; private set; }
         public DateTime DataRegistro { get; private set; }
 
-        public ExtratoBancario(ICollection<Transacoes> transaction, DateTime dataInicio, DateTime dataFim)
+        public ExtratoBancario(ICollection<Transacoes> transacoes, DateTime dataInicio, DateTime dataFim)
         {
-            Transaction = transaction;
+            Transacoes = transacoes;
             DataInicio = dataInicio;
             DataFim = dataFim;
             DataRegistro = DateTime.Now;
