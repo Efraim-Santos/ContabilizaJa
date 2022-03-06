@@ -1,0 +1,24 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
+    <AssemblyName>ContabilizaJa.Processamento.ApplicationCore</AssemblyName>
+    <RootNamespace>ContabilizaJa.Processamento.ApplicationCore</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="EventHandlers\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="FluentValidation" Version="8.6.3" />
+    <PackageReference Include="MediatR" Version="7.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ContabilizaJa.Movimentacao.Application\ContabilizaJa.Movimentacao.Application.csproj" />
+    <ProjectReference Include="..\ContabilizaJa.Movimentacao.Data\ContabilizaJa.Movimentacao.Data.csproj" />
+    <ProjectReference Include="..\ContabilizaJa.Movimentacao.Service\ContabilizaJa.Movimentacao.Service.csproj" />
+  </ItemGroup>
+
+</Project>

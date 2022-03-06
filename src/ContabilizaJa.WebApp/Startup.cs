@@ -33,6 +33,8 @@ namespace ContabilizaJa.WebApp
             ConfigurationServices.ResolveDependencyInjection(services);
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+
+            services.AddMediatR(typeof(Startup));
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)

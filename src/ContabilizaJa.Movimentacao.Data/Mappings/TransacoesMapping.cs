@@ -22,10 +22,10 @@ namespace ContabilizaJa.Movimentacao.Data.Mappings
                 .HasColumnType("decimal(5, 2)");
 
             builder.HasOne(t => t.Extrato)
-                .WithMany(e => e.Transaction)
+                .WithMany(e => e.Transacoes)
                 .HasForeignKey(t => t.Id);
 
             builder.ToTable("Transacoes");
-        }
+        }       
     }
 }

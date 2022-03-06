@@ -9,21 +9,21 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Processamento", "Processame
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WebApp", "WebApp", "{619BC5EE-2998-4200-B965-65F6D5F474E1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContabilizaJa.Movimentacao.Application", "src\ContabilizaJa.Movimentacao.Application\ContabilizaJa.Movimentacao.Application.csproj", "{05648105-20DB-4BF0-B632-238C0F1A7EAE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ContabilizaJa.Movimentacao.Application", "src\ContabilizaJa.Movimentacao.Application\ContabilizaJa.Movimentacao.Application.csproj", "{05648105-20DB-4BF0-B632-238C0F1A7EAE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContabilizaJa.Movimentacao.Domain", "src\ContabilizaJa.Movimentacao.Domain\ContabilizaJa.Movimentacao.Domain.csproj", "{28418D65-3D88-4F50-8BC3-F040B816A07F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ContabilizaJa.Movimentacao.Domain", "src\ContabilizaJa.Movimentacao.Domain\ContabilizaJa.Movimentacao.Domain.csproj", "{28418D65-3D88-4F50-8BC3-F040B816A07F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContabilizaJa.Movimentacao.Service", "src\ContabilizaJa.Movimentacao.Service\ContabilizaJa.Movimentacao.Service.csproj", "{031695FB-E653-49B6-A5B8-A75ABB7DFCB6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ContabilizaJa.Movimentacao.Service", "src\ContabilizaJa.Movimentacao.Service\ContabilizaJa.Movimentacao.Service.csproj", "{031695FB-E653-49B6-A5B8-A75ABB7DFCB6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContabilizaJa.Movimentacao.Data", "src\ContabilizaJa.Movimentacao.Data\ContabilizaJa.Movimentacao.Data.csproj", "{B21CB160-4360-41DC-BD18-97C7254C5206}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ContabilizaJa.Movimentacao.Data", "src\ContabilizaJa.Movimentacao.Data\ContabilizaJa.Movimentacao.Data.csproj", "{B21CB160-4360-41DC-BD18-97C7254C5206}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContabilizaJa.Processamento.Application", "src\ContabilizaJa.Processamento.Application\ContabilizaJa.Processamento.Application.csproj", "{7D189725-9061-48B8-9C76-FA5EA509DA65}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ContabilizaJa.Processamento.ApplicationCore", "src\ContabilizaJa.Processamento.Application\ContabilizaJa.Processamento.ApplicationCore.csproj", "{7D189725-9061-48B8-9C76-FA5EA509DA65}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContabilizaJa.Processamento.CrossCutting", "src\ContabilizaJa.Processamento.CrossCutting\ContabilizaJa.Processamento.CrossCutting.csproj", "{33F90D68-51F1-49AD-A5DA-2F055BA22BD0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ContabilizaJa.Processamento.CrossCutting", "src\ContabilizaJa.Processamento.CrossCutting\ContabilizaJa.Processamento.CrossCutting.csproj", "{33F90D68-51F1-49AD-A5DA-2F055BA22BD0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContabilizaJa.Processamento.Domain", "src\ContabilizaJa.Processamento.Domain\ContabilizaJa.Processamento.Domain.csproj", "{2E285087-A763-42E8-82DE-48DD6B9323A2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ContabilizaJa.Processamento.Domain", "src\ContabilizaJa.Processamento.Domain\ContabilizaJa.Processamento.Domain.csproj", "{2E285087-A763-42E8-82DE-48DD6B9323A2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContabilizaJa.WebApp", "src\ContabilizaJa.WebApp\ContabilizaJa.WebApp.csproj", "{4EA61110-1C68-4C5C-BD9F-DE543053D51F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ContabilizaJa.WebApp", "src\ContabilizaJa.WebApp\ContabilizaJa.WebApp.csproj", "{4EA61110-1C68-4C5C-BD9F-DE543053D51F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
