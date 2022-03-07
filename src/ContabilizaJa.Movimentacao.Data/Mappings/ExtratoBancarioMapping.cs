@@ -16,7 +16,7 @@ namespace ContabilizaJa.Movimentacao.Data.Mappings
             builder.Property(e => e.DataFim)
                 .IsRequired();
 
-            builder.HasMany(e => e.Transaction)
+            builder.HasMany(e => e.Transacoes)
                 .WithOne(t => t.Extrato)
                 .HasForeignKey(e => e.Id);
 

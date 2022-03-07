@@ -18,5 +18,7 @@ namespace ContabilizaJa.Movimentacao.Domain
             DataFim = dataFim;
             DataRegistro = DateTime.Now;
         }
+
+        protected ExtratoBancario(){}
     }
 }

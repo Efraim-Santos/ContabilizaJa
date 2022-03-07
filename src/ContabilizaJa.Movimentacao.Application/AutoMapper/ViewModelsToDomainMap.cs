@@ -6,7 +6,7 @@ using System.Text;
 
 namespace ContabilizaJa.Movimentacao.Application.AutoMapper
 {
-    class ViewModelsToDomainMap : Profile
+    public class ViewModelsToDomainMap : Profile
     {
         public ViewModelsToDomainMap()
         {

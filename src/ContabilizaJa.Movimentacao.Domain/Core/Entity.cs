@@ -4,7 +4,7 @@ using System.Text;
 
 namespace ContabilizaJa.Movimentacao.Domain.Core
 {
-    public class Entity
+    public abstract class Entity
     {
         public int Id { get; set; }
     }

@@ -7,13 +7,17 @@
 
 
   <ItemGroup>
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="7.0.0" />
+    <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="7.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.2.0" PrivateAssets="All" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="2.2.4" />
   </ItemGroup>
 
 
   <ItemGroup>
     <ProjectReference Include="..\ContabilizaJa.Movimentacao.Data\ContabilizaJa.Movimentacao.Data.csproj" />
+    <ProjectReference Include="..\ContabilizaJa.Processamento.Application\ContabilizaJa.Processamento.ApplicationCore.csproj" />
   </ItemGroup>
 
 </Project>

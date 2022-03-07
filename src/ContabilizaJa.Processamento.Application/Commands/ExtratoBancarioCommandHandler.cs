@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace ContabilizaJa.Processamento.ApplicationCore.Commands
 {
-    class ExtratoBancarioCommandHandler 
+    public class ExtratoBancarioCommandHandler 
         : IRequestHandler<AdicionarExtratoBancarioCommand, bool>,
           IRequestHandler<RemoverExtratoBancarioCommand, bool>
     {
@@ -36,6 +36,7 @@ namespace ContabilizaJa.Processamento.ApplicationCore.Commands
             if (validator.IsValid)
             {
                 await _extratroRepositorio.Adicionar(extrato);
+                await _mediator.Publish(new DomainNotification("AdicionarExtratoBancario", "Extrato foi salvo com sucesso!!"));
             }
             else
             {
