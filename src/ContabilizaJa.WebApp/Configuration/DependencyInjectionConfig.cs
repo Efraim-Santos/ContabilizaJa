@@ -1,4 +1,5 @@
 ﻿using ContabilizaJa.Movimentacao.Data;
+using ContabilizaJa.Movimentacao.Data.Repository;
 using ContabilizaJa.Processamento.ApplicationCore.Commands;
 using ContabilizaJa.Processamento.ApplicationCore.Notifications;
 using MediatR;
@@ -15,6 +16,7 @@ namespace ContabilizaJa.WebApp.Configuration
         public static void ResolveDependencyInjection(IServiceCollection services)
         {
             services.AddScoped<IExtratoBancarioRepository, ExtratoBancarioRepository>();
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddScoped<IRequestHandler<AdicionarExtratoBancarioCommand, bool>, ExtratoBancarioCommandHandler>();
             services.AddScoped<IRequestHandler<RemoverExtratoBancarioCommand, bool>, ExtratoBancarioCommandHandler>();
             services.AddScoped<INotificationHandler<DomainNotification>, DomainNotificationHandler>();

@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using ContabilizaJa.Movimentacao.Data;
+using ContabilizaJa.Movimentacao.Data.Repository;
 using ContabilizaJa.Movimentacao.Domain;
 using ContabilizaJa.Movimentacao.Service.Validators;
 using ContabilizaJa.Processamento.ApplicationCore.Notifications;
@@ -18,13 +19,13 @@ namespace ContabilizaJa.Processamento.ApplicationCore.Commands
     {
         private readonly IMediator _mediator;
         private readonly IMapper _mapper;
-        private readonly IExtratoBancarioRepository _extratroRepositorio;
+        private readonly IUnitOfWork UnitOfWork;
 
-        public ExtratoBancarioCommandHandler(IMediator mediator, IMapper mapper, IExtratoBancarioRepository extratroRepositorio)
+        public ExtratoBancarioCommandHandler(IMediator mediator, IMapper mapper, IUnitOfWork unitOfWork)
         {
             _mediator = mediator;
             _mapper = mapper;
-            _extratroRepositorio = extratroRepositorio;
+            UnitOfWork = unitOfWork;
         }
 
         public async Task<bool> Handle(AdicionarExtratoBancarioCommand request, CancellationToken cancellationToken)
@@ -35,7 +36,8 @@ namespace ContabilizaJa.Processamento.ApplicationCore.Commands
 
             if (validator.IsValid)
             {
-                await _extratroRepositorio.Adicionar(extrato);
+                await UnitOfWork.ExtratoBancarioRepository.Adicionar(extrato);
+                await UnitOfWork.Commit();
                 await _mediator.Publish(new DomainNotification("AdicionarExtratoBancario", "Extrato foi salvo com sucesso!!"));
             }
             else
@@ -46,9 +48,20 @@ namespace ContabilizaJa.Processamento.ApplicationCore.Commands
             return true;
         }
 
-        public Task<bool> Handle(RemoverExtratoBancarioCommand request, CancellationToken cancellationToken)
+        public async Task<bool> Handle(RemoverExtratoBancarioCommand request, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            var extrato = await UnitOfWork.ExtratoBancarioRepository.ObterPorId(request.IdExtrato);
+
+            if(extrato == null)
+            {
+                await _mediator.Publish(new DomainNotification(request.GetType().Name, "Extrato bancario não encontrado!!"));
+                return false;
+            }
+
+            UnitOfWork.ExtratoBancarioRepository.Remover(extrato);
+            await UnitOfWork.Commit();
+            await _mediator.Publish(new DomainNotification(request.GetType().Name, "Extrato foi removido com sucesso!!"));
+            return true;
         }
     }
 }

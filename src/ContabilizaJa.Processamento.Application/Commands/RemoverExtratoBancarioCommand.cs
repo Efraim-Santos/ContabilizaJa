@@ -7,6 +7,6 @@ namespace ContabilizaJa.Processamento.ApplicationCore.Commands
 {
     public class RemoverExtratoBancarioCommand :  IRequest<bool>
     {
-        public int Id { get; set; }
+        public int IdExtrato { get; set; }
     }
 }

@@ -15,23 +15,25 @@ namespace ContabilizaJa.Movimentacao.Data
         {
             _context = db;
         }
-        public virtual async Task Adicionar(ExtratoBancario extrato)
-        {
-            _context.Add(extrato);
 
-            await _context.SaveChangesAsync();
+        public async Task Adicionar(ExtratoBancario extrato)
+        {
+            await _context.ExtratoBancario.AddAsync(extrato);
         }
-        public virtual async Task<List<ExtratoBancario>> ObterTodos()
+
+        public void Remover(ExtratoBancario extrato)
+        {
+            _context.ExtratoBancario.Remove(extrato);
+        }
+
+        public async Task<List<ExtratoBancario>> ObterTodos()
         {
             return await _context.ExtratoBancario.AsNoTracking().ToListAsync();
         }
-        public virtual async Task<ExtratoBancario> ObterPorId(int id)
+
+        public async Task<ExtratoBancario> ObterPorId(int id)
         {
             return await _context.ExtratoBancario.FindAsync(id);
-        }
-        public void Dispose()
-        {
-            _context?.Dispose();
         }
     }
 }

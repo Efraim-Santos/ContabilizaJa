@@ -7,6 +7,7 @@ namespace ContabilizaJa.Movimentacao.Data
     public interface IExtratoBancarioRepository
     {
         Task Adicionar(ExtratoBancario extrato);
+        void Remover(ExtratoBancario extrato);
         Task<ExtratoBancario> ObterPorId(int id);
         Task<List<ExtratoBancario>> ObterTodos();
     }
