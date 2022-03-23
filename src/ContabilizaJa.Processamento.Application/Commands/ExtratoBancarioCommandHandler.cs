@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using ContabilizaJa.Movimentacao.Application;
 using ContabilizaJa.Movimentacao.Data;
 using ContabilizaJa.Movimentacao.Data.Repository;
 using ContabilizaJa.Movimentacao.Domain;
@@ -8,12 +9,13 @@ using MediatR;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
 namespace ContabilizaJa.Processamento.ApplicationCore.Commands
 {
-    public class ExtratoBancarioCommandHandler 
+    public class ExtratoBancarioCommandHandler
         : IRequestHandler<AdicionarExtratoBancarioCommand, bool>,
           IRequestHandler<RemoverExtratoBancarioCommand, bool>
     {
@@ -30,7 +32,7 @@ namespace ContabilizaJa.Processamento.ApplicationCore.Commands
 
         public async Task<bool> Handle(AdicionarExtratoBancarioCommand request, CancellationToken cancellationToken)
         {
-            var extrato = new ExtratoBancario(request.Transacoes, request.DataInicio, request.DataFim);
+            var extrato = _mapper.Map<ExtratoBancarioViewModels, ExtratoBancario>(request.ExtratoBancario);
 
             var validator = new ExtratoBancarioValidator().Validate(extrato);
 
@@ -38,11 +40,11 @@ namespace ContabilizaJa.Processamento.ApplicationCore.Commands
             {
                 await UnitOfWork.ExtratoBancarioRepository.Adicionar(extrato);
                 await UnitOfWork.Commit();
-                await _mediator.Publish(new DomainNotification("AdicionarExtratoBancario", "Extrato foi salvo com sucesso!!"));
+                await _mediator.Publish(new DomainNotification(request.GetType().Name, "Extrato foi salvo com sucesso!!"));
             }
             else
             {
-                await _mediator.Publish(new DomainNotification("AdicionarExtratoBancario", validator.Errors.ToString()));
+                await _mediator.Publish(new DomainNotification(request.GetType().Name, validator.Errors.ToString()));
                 return false;
             }
             return true;
@@ -52,15 +54,27 @@ namespace ContabilizaJa.Processamento.ApplicationCore.Commands
         {
             var extrato = await UnitOfWork.ExtratoBancarioRepository.ObterPorId(request.IdExtrato);
 
-            if(extrato == null)
+            if (extrato == null)
             {
                 await _mediator.Publish(new DomainNotification(request.GetType().Name, "Extrato bancario não encontrado!!"));
                 return false;
             }
 
-            UnitOfWork.ExtratoBancarioRepository.Remover(extrato);
-            await UnitOfWork.Commit();
+            try
+            {
+                await UnitOfWork.TransacoesBancariasRepository.RemoverTransacoesDoExtrato(extrato.Id);
+
+                UnitOfWork.ExtratoBancarioRepository.Remover(extrato);
+
+                await UnitOfWork.Commit();
+            }
+            catch (Exception e)
+            {
+                await _mediator.Publish(new DomainNotification(request.GetType().Name, e.Message));
+               return false;
+            }
             await _mediator.Publish(new DomainNotification(request.GetType().Name, "Extrato foi removido com sucesso!!"));
+            
             return true;
         }
     }

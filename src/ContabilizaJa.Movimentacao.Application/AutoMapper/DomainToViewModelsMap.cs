@@ -12,7 +12,7 @@ namespace ContabilizaJa.Movimentacao.Application.AutoMapper
         {
             CreateMap<ExtratoBancario, ExtratoBancarioViewModels>()
                 .ForMember(e => e.Periodo,
-                                map => map.MapFrom(ebd => $"Relatório de saldo da conta para o período de {ebd.DataInicio} a {ebd.DataFim}"));
+                                map => map.MapFrom(ebd => $"Relatório do extrato da conta para o período de {ebd.DataInicio} a {ebd.DataFim}"));
 
             CreateMap<Transacoes, TransacoesViewModel>();
         }

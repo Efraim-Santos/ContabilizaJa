@@ -1,0 +1,17 @@
+﻿@{
+    ViewData["Title"] = "BankLine";
+}
+<div class="container">
+
+    <h2>Formulario para envio do arquivo</h2>
+
+    <partial name="~/Views/Shared/Partial/LoadValidationMessage.cshtml" />
+
+    <form class="my-4" asp-controller="ProcessarArquivo" asp-action="CarregarArquivo" enctype="multipart/form-data" method="post">
+        <div class="mb-3">
+            <label for="formFile" class="form-label">Selecionar Arquivo OFX</label>
+            <input class="form-control" type="file" name="arquivos" id="formFile" multiple>
+        </div>
+        <input type="submit" class="btn btn-primary" value="Processar extrato">
+    </form>
+</div>

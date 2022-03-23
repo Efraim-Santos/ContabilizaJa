@@ -10,7 +10,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\ContabilizaJa.Movimentacao.Application\ContabilizaJa.Movimentacao.Application.csproj" />
     <ProjectReference Include="..\ContabilizaJa.Movimentacao.Domain\ContabilizaJa.Movimentacao.Domain.csproj" />
+    <ProjectReference Include="..\ContabilizaJa.Processamento.Domain\ContabilizaJa.Processamento.Domain.csproj" />
   </ItemGroup>
 
   <ItemGroup>

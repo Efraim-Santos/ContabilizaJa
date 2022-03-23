@@ -8,6 +8,7 @@
 
   <ItemGroup>
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="7.0.0" />
+    <PackageReference Include="bootstrap" Version="5.1.2" />
     <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="7.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.2.0" PrivateAssets="All" />
@@ -16,8 +17,16 @@
 
 
   <ItemGroup>
+    <ProjectReference Include="..\ContabilizaJa.Movimentacao.Application\ContabilizaJa.Movimentacao.Application.csproj" />
     <ProjectReference Include="..\ContabilizaJa.Movimentacao.Data\ContabilizaJa.Movimentacao.Data.csproj" />
     <ProjectReference Include="..\ContabilizaJa.Processamento.Application\ContabilizaJa.Processamento.ApplicationCore.csproj" />
+    <ProjectReference Include="..\ContabilizaJa.Processamento.CrossCutting\ContabilizaJa.Processamento.CrossCutting.csproj" />
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <Folder Include="wwwroot\ExtratosImportados\" />
+    <Folder Include="wwwroot\js\Bootstrap\" />
   </ItemGroup>
 
 </Project>

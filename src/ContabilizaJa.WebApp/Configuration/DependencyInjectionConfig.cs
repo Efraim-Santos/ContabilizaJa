@@ -1,4 +1,5 @@
 ﻿using ContabilizaJa.Movimentacao.Data;
+using ContabilizaJa.Movimentacao.Data.Queries;
 using ContabilizaJa.Movimentacao.Data.Repository;
 using ContabilizaJa.Processamento.ApplicationCore.Commands;
 using ContabilizaJa.Processamento.ApplicationCore.Notifications;
@@ -20,6 +21,7 @@ namespace ContabilizaJa.WebApp.Configuration
             services.AddScoped<IRequestHandler<AdicionarExtratoBancarioCommand, bool>, ExtratoBancarioCommandHandler>();
             services.AddScoped<IRequestHandler<RemoverExtratoBancarioCommand, bool>, ExtratoBancarioCommandHandler>();
             services.AddScoped<INotificationHandler<DomainNotification>, DomainNotificationHandler>();
+            services.AddScoped<IExtratoBancarioQueries, ExtratoBancarioQueries>();
         }
     }
 }

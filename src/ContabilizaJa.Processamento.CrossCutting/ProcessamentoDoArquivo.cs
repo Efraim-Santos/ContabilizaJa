@@ -1,35 +1,55 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using ContabilizaJa.Processamento.CrossCutting.Extensions;
+using ContabilizaJa.Processamento.Domain;
+using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Threading.Tasks;
 
 namespace ContabilizaJa.Processamento.CrossCutting
 {
-    public class ProcessamentoDoArquivo
+    public static class ProcessamentoDoArquivo
     {
-        public async Task ReadFiles(List<IFormFile> files)
+        private const string TransacaoTag = "STMTTRN";
+
+        public static IEnumerable<TransacoesBancaria> LerArquivos(List<IFormFile> arquivos)
         {
-            foreach (var file in files)
+            var extrato = new List<TransacoesBancaria>();
+
+            foreach (var arquivo in arquivos)
             {
-                if (file.Length > 0)
+                if (arquivo.Length > 0)
                 {
-                    //if (!file.FileName.Contains(".ofx"))
-                    //{
-                    //    ViewData["Error"] = $"A Extensão {file.FileName.Split('.')[1]} é invalida, favor carregar arquivo do tipo ofx!";
-                    //    return View("Index");
-                    //}
-                    //var filePath = Path.GetTempFileName();
+                    var stream = arquivo.OpenReadStream();
 
-                    //string newNameFile = $"extrato_{DateTime.Now.ToString("yyyyMMddTHHmmssZ")}.ofx";
+                    StreamReader sr = new StreamReader(stream);
 
-                    //string caminhoDestinoArquivo = $"{GetPathRootFiles()}\\ExtratosImportados\\{newNameFile}";
+                    string linha;
 
-                    //using (var stream = System.IO.File.Create(caminhoDestinoArquivo))
-                    //{
-                    //    await formFile.CopyToAsync(stream);
-                    //}
+                    while ((linha = sr.ReadLine()) != null)
+                    {
+                        linha = linha.Trim();
+
+                        if (linha.Contains($"<{TransacaoTag}>"))
+                        {
+                            var transacaoCorrente = new TransacoesBancaria();
+
+                            while (!(linha = sr.ReadLine()).Contains($"</{TransacaoTag}>"))
+                            {
+                                var nomeDaTag = TratarLinhaExtension.BuscarNomeTag(linha);
+                                var valorDaTag = TratarLinhaExtension.BuscarValorDaTag(nomeDaTag, linha);
+                                transacaoCorrente = TratarLinhaExtension.AtribuirValor(transacaoCorrente, nomeDaTag, valorDaTag);
+                            }
+
+                            extrato.Add(transacaoCorrente);
+                        }
+                    }
                 }
             }
+            return extrato;
         }
     }
 }
+
+
+

@@ -2,7 +2,7 @@
 using ContabilizaJa.Movimentacao.Domain;
 using System;
 using System.Collections.Generic;
-using System.Text;
+using System.Linq;
 
 namespace ContabilizaJa.Movimentacao.Application.AutoMapper
 {
@@ -13,7 +13,9 @@ namespace ContabilizaJa.Movimentacao.Application.AutoMapper
             CreateMap<TransacoesViewModel, Transacoes>();
 
             CreateMap<ExtratoBancarioViewModels, ExtratoBancario>()
-                .ForSourceMember(evm => evm.Periodo, opt => opt.DoNotValidate());
+                .ForMember(dest => dest.DataInicio, (map => map.MapFrom(t => t.Transacoes.OrderBy(tr => tr.Data).FirstOrDefault().Data.Date)))
+                .ForMember(dest => dest.DataFim, (map => map.MapFrom(t => t.Transacoes.OrderByDescending(tr => tr.Data).FirstOrDefault().Data.Date)))
+                .ConstructUsing((context) => new ExtratoBancario(context.DataInicio, context.DataFim, context.DataRegistro));
         }
     }
 }

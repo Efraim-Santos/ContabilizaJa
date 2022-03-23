@@ -6,19 +6,25 @@ namespace ContabilizaJa.Movimentacao.Domain
 {
     public class ExtratoBancario : Entity
     {
-        public ICollection<Transacoes> Transacoes { get; private set; }
+        public IEnumerable<Transacoes> Transacoes { get; private set; }
         public DateTime DataInicio { get; private set; }
         public DateTime DataFim { get; private set; }
         public DateTime DataRegistro { get; private set; }
 
-        public ExtratoBancario(ICollection<Transacoes> transacoes, DateTime dataInicio, DateTime dataFim)
+        public ExtratoBancario(DateTime dataInicio, DateTime dataFim, DateTime dataRegistro)
         {
-            Transacoes = transacoes;
+            //Transacoes = transacoes;
             DataInicio = dataInicio;
             DataFim = dataFim;
-            DataRegistro = DateTime.Now;
+            DataRegistro = dataRegistro;
         }
 
-        protected ExtratoBancario(){}
+        public ExtratoBancario() { }
+
+        //public void SetDataInicio(DateTime data)
+        //{
+        //    if (data != null && data != new DateTime(2001, 01, 01))
+        //        this.DataInicio = data;
+        //}
     }
 }

@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace ContabilizaJa.Movimentacao.Data.Repository
@@ -9,6 +7,7 @@ namespace ContabilizaJa.Movimentacao.Data.Repository
     {
         protected readonly MovimentacaoContext _context;
         private IExtratoBancarioRepository extratoBancarioRepository;
+        private ITransacoesBancariasRepository transacoesBancariasRepository;
 
         public UnitOfWork(MovimentacaoContext context)
         {
@@ -20,6 +19,14 @@ namespace ContabilizaJa.Movimentacao.Data.Repository
             get
             {
                 return extratoBancarioRepository = extratoBancarioRepository ?? new ExtratoBancarioRepository(_context);
+            }
+        }
+
+        public ITransacoesBancariasRepository TransacoesBancariasRepository
+        {
+            get
+            {
+                return transacoesBancariasRepository = transacoesBancariasRepository ?? new TransacoesBancariasRepository(_context);
             }
         }
 

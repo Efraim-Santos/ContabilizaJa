@@ -1,0 +1,37 @@
+﻿@model IEnumerable<ContabilizaJa.Movimentacao.Application.ExtratoBancarioViewModels>
+
+<h2>Extratos bancários</h2>
+
+<form method="get" asp-action="Get">
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Data do registro</th>
+                <th scope="col">Periodo do extrato</th>
+                <th scope="col">Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model.Any())
+                {
+                    @foreach (var extrato in Model)
+                    {
+                        <tr>
+                            <td>@extrato.DataRegistro</td>
+                            <td>@extrato.Periodo</td>
+                            <td>
+                                <button type="submit" class="btn btn-primary" name="Id" asp-action="Get" asp-route-id="@extrato.Id">Ver Extrato</button>
+                                <button type="submit" class="btn btn-primary" asp-action="Delete" asp-route-id="@extrato.Id">Remover Extrato</button>
+                            </td>
+                        </tr>
+                    }
+                }
+                else
+                {
+                    <tr>
+                        <td colspan="3">Nenhum registro foi encontrado.</td>
+                    </tr>
+                }
+        </tbody>
+    </table>
+</form>
